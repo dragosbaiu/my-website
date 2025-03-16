@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking Recursively | IB CS Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow-y: auto;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="sticky-header">
+            <h1><pre>Thinking Recursively</pre></h1>
+        </div>
+        <h2>Definition</h2>
+        <p>Recursion is the property of defining a function in terms of itself.</p>
+        
+        <h2>Mathematical Recursion Examples</h2>
+        <ul>
+            <li>Factorial: <span class="formula">N! = N * (N - 1)!</span></li>
+            <li>Exponentiation: <span class="formula">a^n = a * a^(n-1)</span></li>
+            <li>Arithmetic sequence: <span class="formula">a_n = a_(n-1) + r</span></li>
+            <li>Fibonacci sequence: <span class="formula">F_n = F_(n-1) + F_(n-2)</span></li>
+            <li>Greatest Common Divisor (GCD): <span class="formula">gcd(a, b) = gcd(b, a % b)</span> if <span class="formula">b > 0</span>, else <span class="formula">a</span></li>
+            <li>Sum of digits: <span class="formula">sumDigits(n) = n % 10 + sumDigits(n / 10)</span></li>
+            <li>Number of digits: <span class="formula">numDigits(n) = 1 + numDigits(n / 10)</span> if <span class="formula">n >= 10</span></li>
+            <li>Maximum digit: <span class="formula">maxDigit(n) = max(n % 10, maxDigit(n / 10))</span></li>
+        </ul>
+        
+        <h2>Types of Recursion</h2>
+        <ul>
+            <li><strong>Direct recursion:</strong> A function <span class="formula">F</span> calls itself.</li>
+            <li><strong>Indirect recursion:</strong> A function <span class="formula">F</span> calls function <span class="formula">G</span>, which in turn calls <span class="formula">F</span>.</li>
+        </ul>
+        
+        <h2>Factorial Function in Java</h2>
+        <h3>Iterative Approach</h3>
+        <pre>
+public class Factorial {
+    public static int fact(int n) {
+        int p = 1;
+        for (int i = 1; i <= n; i++) {
+            p *= i;
+        }
+        return p;
+    }
+    public static void main(String[] args) {
+        int result = fact(5);
+        System.out.println("Factorial: " + result);
+    }
+}
+        </pre>
+        
+        <h3>Recursive Approach</h3>
+        <pre>
+public class Factorial {
+    public static int fact(int n) {
+        if (n == 0)
+            return 1;
+        else
+            return n * fact(n - 1);
+    }
+    public static void main(String[] args) {
+        int result = fact(5);
+        System.out.println("Factorial: " + result);
+    }
+}
+        </pre>
+
+        <h2>Stack Execution in Recursion</h2>
+        <p>Each recursive function call adds a new memory zone in the stack until it reaches the base case.</p>
+        
+        <h2>Example: Recursive Combinations Function</h2>
+        <pre>
+public class Combinations {
+    public static int comb(int n, int k) {
+        if (n == k || k == 0)
+            return 1;
+        else
+            return comb(n - 1, k - 1) + comb(n - 1, k);
+    }
+    public static void main(String[] args) {
+        System.out.println(comb(5, 2));
+    }
+}
+        </pre>
+
+        <h2>Recursive Call Execution</h2>
+        <p>Each recursive function maintains its local variables separately on the stack. A function call will continue until it reaches the base case.</p>
+
+        <h2>Key Observations in Recursion</h2>
+        <ul>
+            <li>A recursive function must include a <strong>base case</strong> to prevent infinite recursion.</li>
+            <li>Parameter values in recursive calls should move towards the base case.</li>
+        </ul>
+
+        <h2>How to Implement Recursive Calls?</h2>
+        <ul>
+            <li>If a recursive function returns a value, the recursive call is placed in an expression.</li>
+            <li>If a recursive function is void, the recursive call is a standalone statement.</li>
+        </ul>
+
+        <h2>Example of a Void Recursive Function</h2>
+        <pre>
+public class Factorial {
+    public static void fact(int n, int[] r) {
+        if (n == 0)
+            r[0] = 1;
+        else {
+            fact(n - 1, r);
+            r[0] *= n;
+        }
+    }
+    public static void main(String[] args) {
+        int[] a = new int[1];
+        fact(4, a);
+        System.out.println(a[0]);
+    }
+}
+        </pre>
+	<h2>Example of a Non-Void Recursive Function</h2>
+        <pre>
+public class Factorial {
+    public static int fact(int n) {
+        int result;
+        if (n == 0)
+            result = 1;
+        else
+            result = fact(n - 1) * n;
+        return result;
+    }
+    public static void main(String[] args) {
+        int x = fact(3);
+        System.out.println("Factorial of 3: " + x);
+    }
+}
+        </pre>
+    </div>
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+	<div class="copyrights-container">
+            <p>&copy; IBCSE. All rights reserved.</p>
+        </div>
+
+    </div>
+    </body>
+</html>

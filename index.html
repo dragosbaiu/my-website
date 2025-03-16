@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | IB CS Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow: hidden;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="sticky-header">
+            <h1><pre>Home</pre></h1>
+        </div>
+        
+        <div class="intro">
+            <h2>Welcome to IB Computer Science Explained</h2>
+            <p>Hi! I'm DB, the creator of this website. I built this platform as part of my IB CAS project to help students and programmers understand complex computer science topics through clear explanations, structured lessons, and hands-on code examples. Whether you're preparing for exams or just curious about recursion and data structures, I hope you find this resource helpful. Feel free to explore and enhance your coding skills!</p>
+        </div>
+        
+        <pre>
+public class WelcomeTopics {
+    public static void main(String[] args) {
+        System.out.println("Hello! Welcome to the IB Computer Science Website.");
+        System.out.println("Topics Covered:");
+        System.out.println("1. Thinking Recursively");
+        System.out.println("2. Abstract Data Structures");
+        System.out.println("3. Linked Lists");
+        System.out.println("4. Trees");
+        System.out.println("5. Applications");
+    }
+}
+        </pre>
+        
+
+        <p>This website is an ongoing project, and I plan to expand it with:</p>
+        <ul>
+            <li> More interactive examples</li>
+            <li> A quiz section for self-assessment</li>
+            <li> Video explanations for complex concepts</li>
+        </ul>
+        <p>Stay tuned for future updates!</p>
+    </div>
+
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+        <div class="copyrights-container">
+            <p>&copy; 2025 IBCSE. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

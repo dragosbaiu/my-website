@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract Data Structures | IB CS Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow-y: auto;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="sticky-header">
+            <h1><pre>Abstract Data Structures</pre></h1>
+        </div>
+        
+        <h2 style="color: #c00; text-decoration: underline;">Two Dimensional Array</h2>
+        <p>A two-dimensional array (or matrix) is an array where each element is itself an array. These are used to represent tables, grids, and mathematical matrices.</p>
+        
+        <h2>Declaration and Initialization</h2>
+        <pre>
+int[][] matrix = new int[5][10]; // Declares a 5-row, 10-column matrix
+        </pre>
+        
+	<h2>Graphical Representation of a Matrix</h2>
+        <p>A 2D array can be visualized as a table with rows and columns:</p>
+        <pre>
+    0   1   2   3   4   5   6   7   8   9
+  -----------------------------------------
+0 | 34 -53  14  91  87 -23  14  12  57 -6 |
+1 |-87  48 -51  7   38  1   11  18  8   15|
+2 | 21  31  30  1   24 -2  -7   23  64  5 |
+3 |-8   5   8  -1  -2   22  28  25  22  25|
+4 | 39  4   3   0   47  3   17  53  27  38|
+  -----------------------------------------
+        </pre>
+
+        <h2>Indexing in a 2D Array</h2>
+        <p>Each element in a 2D array is accessed using two indices: one for the row and one for the column. Example:</p>
+        <pre>
+matrix[2][4] = 10; // Assigns the value 10 to the element at row index 2 and column index 4
+        </pre>
+        
+        <h2>Traversing a 2D Array</h2>
+        <h3>Row-wise Traversal</h3>
+        <pre>
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();
+}
+        </pre>
+        
+        <h3>Column-wise Traversal</h3>
+        <pre>
+for (int j = 0; j < matrix[0].length; j++) {
+    for (int i = 0; i < matrix.length; i++) {
+        System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();
+}
+        </pre>
+        
+        <h2>Reading and Printing a 2D Array</h2>
+        <p>Reading a matrix:</p>
+        <pre>
+Scanner scanner = new Scanner(System.in);
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        matrix[i][j] = scanner.nextInt();
+    }
+}
+        </pre>
+        <p>Printing a matrix:</p>
+        <pre>
+for (int[] row : matrix) {
+    for (int elem : row) {
+        System.out.print(elem + " ");
+    }
+    System.out.println();
+}
+        </pre>
+ <h2>Memory Usage of a 2D Array</h2>
+    <p>The memory occupied by a 2D array depends on:</p>
+    <ul>
+        <li>The data type of the elements</li>
+        <li>The declared size of the array</li>
+    </ul>
+    <p>Example:</p>
+    <pre>
+int[][] largeMatrix = new int[1000][1000];
+    </pre>
+    <p>This matrix contains 1,000,000 elements, each taking 4 bytes, totaling approximately 4MB.</p>
+    
+    <h2>Base Indexing in 2D Arrays</h2>
+    <p>By default, Java arrays are indexed starting from 0. However, if needed, we can adapt logic to use 1-based indexing.</p>
+    
+    <h2>Example: Accessing Specific Elements</h2>
+    <pre>
+System.out.println(matrix[0][0]); // First element
+System.out.println(matrix[1][9]); // Last column of second row
+System.out.println(matrix[4][3]); // Fifth row, fourth column
+    </pre>
+    
+    <h2>Common Mistakes in 2D Arrays</h2>
+    <ul>
+        <li>Out-of-bounds errors (accessing indices beyond declared size)</li>
+        <li>Forgetting that array indices start at 0</li>
+        <li>Misunderstanding row-major vs. column-major order</li>
+    </ul>
+    
+    <h2>Applications of 2D Arrays</h2>
+    <ul>
+        <li>Graph adjacency matrices</li>
+        <li>Game boards (chess, tic-tac-toe, etc.)</li>
+        <li>Image processing (storing pixel values)</li>
+        <li>Mathematical computations (matrix operations)</li>
+    </ul>
+    <h2 style="color: #c00; text-decoration: underline;">Stack</h2>
+    <p>A stack is a linear abstract data structure where elements are added and removed from the same end, called the <strong>top of the stack</strong>. The stack follows the LIFO (Last In, First Out) principle.</p>
+    
+    <h2>Stack Operations</h2>
+    <ul>
+        <li><strong>Push:</strong> Add an element to the top of the stack.</li>
+        <li><strong>Pop:</strong> Remove the top element from the stack.</li>
+        <li><strong>Peek (Top):</strong> Access the top element without removing it.</li>
+        <li><strong>isEmpty:</strong> Check if the stack is empty.</li>
+    </ul>
+    
+    <h2>When to Use a Stack?</h2>
+    <p>Stacks are commonly used in:</p>
+    <ul>
+        <li>Function calls (recursive and non-recursive)</li>
+        <li>Backtracking algorithms</li>
+        <li>Undo/Redo functionality</li>
+        <li>Converting decimal to binary</li>
+    </ul>
+    
+    <h2>Stack Implementation in Java</h2>
+    <h3>Using an Array</h3>
+    <pre>
+class StackArray {
+    private int maxSize;
+    private int[] stackArray;
+    private int top;
+
+    public StackArray(int size) {
+        this.maxSize = size;
+        this.stackArray = new int[maxSize];
+        this.top = -1;
+    }
+
+    public void push(int value) {
+        if (top == maxSize - 1) {
+            System.out.println("Stack is full");
+            return;
+        }
+        stackArray[++top] = value;
+    }
+
+    public int pop() {
+        if (top == -1) {
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        return stackArray[top--];
+    }
+
+    public int peek() {
+        return (top == -1) ? -1 : stackArray[top];
+    }
+
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+}
+    </pre>
+    
+    <h3>Using Java's Stack Class</h3>
+    <pre>
+import java.util.Stack;
+
+public class StackExample {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        System.out.println("Top element: " + stack.peek());
+        stack.pop();
+        System.out.println("Stack after pop: " + stack);
+    }
+}
+    </pre>
+    
+    <h2>Applications of Stacks</h2>
+    <ul>
+        <li>Expression evaluation (e.g., postfix expressions)</li>
+        <li>Undo/Redo operations in applications</li>
+        <li>Recursive function calls</li>
+        <li>Backtracking algorithms (e.g., maze solving, depth-first search)</li>
+    </ul>
+<h2 style="color: #c00; text-decoration: underline;">Queue</h2>
+    <p>A queue is a linear abstract data structure where elements are added at one end (rear) and removed from the other end (front), following the FIFO (First In, First Out) principle.</p>
+    
+    <h2>Queue Operations</h2>
+    <ul>
+        <li><strong>Enqueue (Push):</strong> Add an element to the rear of the queue.</li>
+        <li><strong>Dequeue (Pop):</strong> Remove the front element from the queue.</li>
+        <li><strong>Front (Peek):</strong> Access the front element without removing it.</li>
+        <li><strong>isEmpty:</strong> Check if the queue is empty.</li>
+    </ul>
+    
+    <h2>When to Use a Queue?</h2>
+    <p>Queues are commonly used in:</p>
+    <ul>
+        <li>Task scheduling (e.g., CPU job scheduling)</li>
+        <li>Managing requests in a server</li>
+        <li>Graph algorithms (e.g., BFS traversal)</li>
+        <li>Print queues, messaging systems</li>
+    </ul>
+    
+    <h2>Queue Implementation in Java</h2>
+    <h3>Using an Array</h3>
+    <pre>
+class QueueArray {
+    private int maxSize;
+    private int[] queueArray;
+    private int front;
+    private int rear;
+    private int size;
+
+    public QueueArray(int size) {
+        this.maxSize = size;
+        this.queueArray = new int[maxSize];
+        this.front = 0;
+        this.rear = -1;
+        this.size = 0;
+    }
+
+    public void enqueue(int value) {
+        if (size == maxSize) {
+            System.out.println("Queue is full");
+            return;
+        }
+        rear = (rear + 1) % maxSize;
+        queueArray[rear] = value;
+        size++;
+    }
+
+    public int dequeue() {
+        if (size == 0) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        int removed = queueArray[front];
+        front = (front + 1) % maxSize;
+        size--;
+        return removed;
+    }
+
+    public int peek() {
+        return (size == 0) ? -1 : queueArray[front];
+    }
+
+    public boolean isEmpty() {
+        return (size == 0);
+    }
+}
+    </pre>
+    
+    <h3>Using Java's Queue Interface</h3>
+    <pre>
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueExample {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+
+        System.out.println("Front element: " + queue.peek());
+        queue.remove();
+        System.out.println("Queue after dequeue: " + queue);
+    }
+}
+    </pre>
+    
+    <h2>Applications of Queues</h2>
+    <ul>
+        <li>Process scheduling (e.g., OS process management)</li>
+        <li>Graph traversal algorithms (BFS)</li>
+        <li>Handling incoming network requests</li>
+        <li>Data buffering in streaming applications</li>
+    </ul>
+    </div>    
+<div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+	<div class="copyrights-container">
+            <p>&copy; IBCSE. All rights reserved.</p>
+        </div>
+
+    </div>
+    </body>
+</html>

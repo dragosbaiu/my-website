@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees | IB CS Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow-y: auto;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="sticky-header">
+            <h1>Trees</h1>
+        </div>
+        
+        <h2>Definition and Properties</h2>
+        <p>A <strong>binary tree</strong> is a tree structure where each node has at most two direct descendants: the <em>left child</em> and the <em>right child</em>.</p>
+        <pre>
+            1
+           / \
+          2   3
+         / \ / \
+        4  5 6  7
+        </pre>
+
+        <h2>Recursive Definition</h2>
+        <p>A binary tree is defined recursively as follows:</p>
+        <ul>
+            <li>There is a special node called the <strong>root</strong>.</li>
+            <li>The remaining nodes are divided into two disjoint subtrees: <em>left subtree</em> and <em>right subtree</em>.</li>
+        </ul>
+        <pre>
+              R
+             / \
+           A1   A2
+        </pre>
+
+        <h2>Binary Tree Properties</h2>
+        <ul>
+            <li>Each level <span class="formula">i</span> contains at most <span class="formula">2^i</span> nodes.</li>
+            <li>A binary tree of height <span class="formula">h</span> has at most <span class="formula">2^(h+1) - 1</span> nodes.</li>
+            <li>The minimum height of a tree with <span class="formula">n</span> nodes is <span class="formula">h ≥ log_2(n+1) - 1</span>.</li>
+        </ul>
+
+        <h2>Special Types of Binary Trees</h2>
+        <h3>Strict Binary Tree</h3>
+        <p>A strict binary tree is a tree where every node has exactly two children, except the leaves.</p>
+        <pre>
+            1
+           / \
+          2   3
+         / \
+        4   5
+        </pre>
+
+        <h3>Full Binary Tree</h3>
+        <p>A full binary tree is a strict binary tree where all terminal nodes are on the same level.</p>
+        <pre>
+            1
+           / \
+          2   3
+         / \ / \
+        4  5 6  7
+        </pre>
+
+        <h3>Complete Binary Tree</h3>
+        <p>A complete binary tree has all levels filled except possibly the last, where nodes are as left-aligned as possible.</p>
+        <pre>
+            1
+           / \
+          2   3
+         / \  /
+        4  5 6
+        </pre>
+
+        <h2>Binary Tree Representation</h2>
+	<pre>
+            1
+           / \
+          2   3
+         /   / \
+        4   5   6
+	 \
+	  7
+        </pre>
+        <h3>Parent Reference Representation</h3>
+        <pre>
+        k      1  2  3  4  5  6  7
+        Parent 0  1  1  2  2  3  3
+        Tip    0 -1  1 -1  1 -1  1
+        </pre>
+        
+        <h3>Child Reference Representation</h3>
+        <pre>
+        k     1  2  3  4  5  6  7
+        Left  2  4  6  0  0  0  0
+        Right 3  5  7  0  0  0  0
+        </pre>
+        
+        <h2>Binary Tree Implementation in Java</h2>
+        <pre>
+class Node {
+    int data;
+    Node left, right;
+
+    public Node(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+        </pre>
+        <pre>
+class BinaryTree {
+    Node root;
+
+    void preOrder(Node node) {
+        if (node == null)
+            return;
+        System.out.print(node.data + " ");
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+    
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.left = new Node(6);
+        tree.root.right.right = new Node(7);
+        
+        System.out.println("Preorder Traversal:");
+        tree.preOrder(tree.root);
+    }
+}
+        </pre>
+
+        <h2>Tree Traversal Methods</h2>
+        <p>Trees can be traversed in different ways:</p>
+        <ul>
+            <li><strong>Inorder (LNR):</strong> Left subtree → Root → Right subtree</li>
+            <li><strong>Preorder (NLR):</strong> Root → Left subtree → Right subtree</li>
+            <li><strong>Postorder (LRN):</strong> Left subtree → Right subtree → Root</li>
+        </ul>
+	<pre>
+            1
+           / \
+          2   3
+         /   / \
+        4   5   6
+	 \
+	  7
+	</pre>
+        <pre>
+        Inorder (LNR):  4 2 5 1 6 3 7
+        Preorder (NLR): 1 2 4 5 3 6 7
+        Postorder (LRN): 4 5 2 6 7 3 1
+        </pre>
+	<h2>Binary Tree Representation Using Arrays</h2>
+        <pre>
+        int n, st[101], dr[101];
+        
+        void readTree() {
+            Scanner sc = new Scanner(System.in);
+            n = sc.nextInt();
+            for (int i = 1; i <= n; i++) {
+                st[i] = sc.nextInt();
+            }
+            for (int i = 1; i <= n; i++) {
+                dr[i] = sc.nextInt();
+            }
+        }
+        </pre>
+
+        <h2>Finding the Root</h2>
+        <pre>
+        int findRoot() {
+            int[] v = new int[101];
+            for (int i = 1; i <= n; i++) {
+                if (st[i] != 0) v[st[i]] = -1;
+                if (dr[i] != 0) v[dr[i]] = -1;
+            }
+            for (int i = 1; i <= n; i++) {
+                if (v[i] == 0) return i;
+            }
+            return 0;
+        }
+        </pre>
+
+        <h2>Binary Tree Traversals</h2>
+        <h3>Inorder Traversal</h3>
+        <pre>
+        void inOrder(int x) {
+            if (x != 0) {
+                inOrder(st[x]);
+                System.out.print(x + " ");
+                inOrder(dr[x]);
+            }
+        }
+        </pre>
+
+        <h3>Preorder Traversal</h3>
+        <pre>
+        void preOrder(int x) {
+            if (x != 0) {
+                System.out.print(x + " ");
+                preOrder(st[x]);
+                preOrder(dr[x]);
+            }
+        }
+        </pre>
+
+        <h3>Postorder Traversal</h3>
+        <pre>
+        void postOrder(int x) {
+            if (x != 0) {
+                postOrder(st[x]);
+                postOrder(dr[x]);
+                System.out.print(x + " ");
+            }
+        }
+        </pre>
+
+        <h2>Dynamic Binary Tree Representation</h2>
+        <pre>
+        class Node {
+            int data;
+            Node left, right;
+            
+            Node(int data) {
+                this.data = data;
+                left = right = null;
+            }
+        }
+        </pre>
+        
+        <h3>Creating the Tree</h3>
+        <pre>
+        void createTree(Node node, int x) {
+            if (x == 0) return;
+            node = new Node(x);
+            System.out.print("Left child of " + x + " = ");
+            Scanner sc = new Scanner(System.in);
+            int leftChild = sc.nextInt();
+            createTree(node.left, leftChild);
+            
+            System.out.print("Right child of " + x + " = ");
+            int rightChild = sc.nextInt();
+            createTree(node.right, rightChild);
+        }
+        </pre>
+
+        <h2>Deleting a Binary Tree</h2>
+        <pre>
+        void deleteTree(Node node) {
+            if (node != null) {
+                deleteTree(node.left);
+                deleteTree(node.right);
+                node = null;
+            }
+        }
+        </pre>
+        
+        <h3>Proper and Improper Ways to Delete a Subtree</h3>
+        <p>Correct way:</p>
+        <pre>
+        root.left = null;
+        </pre>
+        <p>Incorrect way:</p>
+        <pre>
+        Node temp = root.left;
+        temp = null;
+        </pre>
+    </div>
+   <div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+	<div class="copyrights-container">
+            <p>&copy; 2025 IBCSE. All rights reserved.</p>
+        </div>
+
+    </div>
+    </body>
+</html>

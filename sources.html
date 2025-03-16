@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion in Computer Science</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow-y: auto;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+    <div class="content-container">
+    <div class="sticky-header">
+        <h1><pre>Sources</pre></h1>
+    </div>
+    
+    <div class="intro">
+        <h2>References and Sources</h2>
+        <p>Throughout the development of this website, I have referenced various resources to ensure the accuracy and depth of the content. Below are the primary sources that contributed to the explanations and examples provided on this platform.</p>
+    </div>
+    
+    <h3>Primary Sources</h3>
+    <ul>
+        <li>
+            <strong>pbinfo.ro</strong> - A Romanian platform that provides a wide range of programming problems, explanations, and resources for students interested in computer science. This website was instrumental in structuring problem-solving examples and exercises presented in some lessons.
+            <br><a href="https://www.pbinfo.ro" target="_blank">Visit pbinfo.ro</a>
+        </li>
+        <li>
+            <strong>Advanced Computer Science Textbook</strong> by Kostas Dimitroiu - A comprehensive resource covering key concepts in computer science, including abstract data structures, recursion, and algorithmic thinking. This textbook served as a valuable reference for structuring the lessons and explanations.
+        </li>
+    </ul>
+    
+    <h3>Additional Notes</h3>
+    <p>This website is an ongoing project, and I will continue to update and refine its content by referencing additional academic and online sources. If you have any suggestions or recommended readings, feel free to reach out!</p>
+</div>    <div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+	<div class="copyrights-container">
+            <p>&copy; 2025 IBCSE. All rights reserved.</p>
+        </div>
+
+    </div>
+    </body>
+</html>

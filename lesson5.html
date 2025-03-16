@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees | IB CS Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow-y: auto;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+    <div class="content-container">
+    <div class="sticky-header">
+        <h1><pre>Applications</pre></h1>
+    </div>
+    
+    <div class="intro">
+        <h2>Practice Exercises</h2>
+        <p>Below are practical exercises covering key IB Computer Science topics, including recursion, abstract data structures, linked lists, and trees. Try solving these problems to strengthen your understanding of the concepts!</p>
+    </div>
+    
+    <h3>1. Thinking Recursively</h3>
+    <p><strong>Exercise 1:</strong> Write a recursive function in Java to compute the nth Fibonacci number.</p>
+    <button onclick="document.getElementById('fibonacciAnswer').style.display='block'">Reveal Answer</button>
+    <pre id="fibonacciAnswer" style="display:none;">
+public class Fibonacci {
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(fibonacci(10)); // Example test
+    }
+}
+    </pre>
+    
+    <p><strong>Exercise 2:</strong> Implement a recursive function to calculate the factorial of a number.</p>
+    <button onclick="document.getElementById('factorialAnswer').style.display='block'">Reveal Answer</button>
+    <pre id="factorialAnswer" style="display:none;">
+public class Factorial {
+    public static int factorial(int n) {
+        if (n == 0) return 1;
+        return n * factorial(n - 1);
+    }
+}
+    </pre>
+    
+    <h3>2. Abstract Data Structures</h3>
+    <p><strong>Exercise 1:</strong> Implement a stack using an array in Java, supporting push, pop, and peek operations.</p>
+    <button onclick="document.getElementById('stackAnswer').style.display='block'">Reveal Answer</button>
+    <pre id="stackAnswer" style="display:none;">
+class Stack {
+    private int[] stack;
+    private int top;
+    
+    public Stack(int size) {
+        stack = new int[size];
+        top = -1;
+    }
+    
+    public void push(int value) {
+        if (top == stack.length - 1) {
+            System.out.println("Stack Overflow");
+            return;
+        }
+        stack[++top] = value;
+    }
+    
+    public int pop() {
+        if (top == -1) {
+            System.out.println("Stack Underflow");
+            return -1;
+        }
+        return stack[top--];
+    }
+}
+    </pre>
+    
+    <h3>3. Linked Lists</h3>
+    <p><strong>Exercise:</strong> Implement a singly linked list in Java with methods to add and remove nodes.</p>
+    <button onclick="document.getElementById('linkedListAnswer').style.display='block'">Reveal Answer</button>
+    <pre id="linkedListAnswer" style="display:none;">
+class Node {
+    int data;
+    Node next;
+    
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    private Node head;
+    
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+    }
+}
+    </pre>
+    
+    <h3>4. Trees</h3>
+    <p><strong>Exercise:</strong> Implement a basic binary search tree (BST) with insertion and in-order traversal.</p>
+    <button onclick="document.getElementById('treeAnswer').style.display='block'">Reveal Answer</button>
+    <pre id="treeAnswer" style="display:none;">
+class TreeNode {
+    int value;
+    TreeNode left, right;
+    
+    public TreeNode(int value) {
+        this.value = value;
+        left = right = null;
+    }
+}
+
+class BinarySearchTree {
+    private TreeNode root;
+    
+    public void insert(int value) {
+        root = insertRec(root, value);
+    }
+    
+    private TreeNode insertRec(TreeNode root, int value) {
+        if (root == null) {
+            return new TreeNode(value);
+        }
+        if (value < root.value) {
+            root.left = insertRec(root.left, value);
+        } else {
+            root.right = insertRec(root.right, value);
+        }
+        return root;
+    }
+}
+    </pre>
+    
+    <h3>Keep Practicing!</h3>
+    <p>By practicing these exercises, you will build a solid foundation in key computer science concepts. Try modifying the code, adding additional functionalities, or implementing alternative approaches to reinforce your learning!</p>
+</div>
+
+   <div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+	<div class="copyrights-container">
+            <p>&copy; 2025 IBCSE. All rights reserved.</p>
+        </div>
+
+    </div>
+    </body>
+</html>

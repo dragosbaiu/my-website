@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked Lists | IB CS Explained</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+	    flex-direction: row;
+	    height: 100vh;
+            overflow: hidden;
+        }
+        .content-container {
+            max-width: 1100px;
+            background: white;
+	    padding-right: 20px;
+            padding-left: 20px;
+	    padding-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 3;
+            overflow-y: auto;
+            height: 89vh;
+        }
+	.sidebar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    margin-right: -35px;
+        }
+	.sticky-header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            z-index: 10;
+        }
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-style: italic;
+            color: #c00;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .sidebar ul li a:hover {
+            color: #c00;
+        }
+	.image-container {
+            width: 250px;
+            background: white;
+            padding:20px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        .image-container img {
+            width: 250px;
+            object-fit: cover;
+            max-height: 200px; 
+        }
+	.copyrights-container {
+	    width: 280px;
+            background: white;
+            padding:5px;
+	    margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+	}
+    </style>
+</head>
+<body>
+<div class="content-container">
+	<div class="sticky-header">
+            <h1><pre>Linked Lists</pre></h1>
+        </div><h1>Linked Lists</h1>
+    
+    <h2>Definition</h2>
+    <p>A linked list is a linear data structure consisting of elements (nodes) where each node contains two parts:</p>
+    <ul>
+        <li><strong>Data:</strong> The information stored in the node (e.g., numbers, strings).</li>
+        <li><strong>Link:</strong> A reference to the next node in the list.</li>
+    </ul>
+    
+    <h2>Basic Structure of a Linked List</h2>
+    <pre>
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+    </pre>
+    
+    <h3>Observations</h3>
+    <ul>
+        <li>At the beginning, the head (starting node) is set to <code>null</code>, meaning the list is empty.</li>
+        <li>Elements in the list are dynamic and created using Java's <code>new</code> operator.</li>
+        <li>Each node occupies memory in the heap, rather than static memory allocation.</li>
+        <li>The size of a pointer reference varies, but generally, a node storing an integer and a pointer will occupy 8 bytes (4+4).</li>
+        <li>Traversal is done by following the links between nodes.</li>
+    </ul>
+    
+    <h2>Diagram Representation of a Linked List</h2>
+    <p>Each node in a linked list stores a reference to the next node. The last node points to <code>null</code>, indicating the end of the list.</p>
+    <pre>
+    +------+     +------+------+     +------+------+     +------+------+
+    |  *---+---> |  12  |  *---+---> |  46  |  *---+---> |  25  |  NULL|
+    +------+     +------+------+     +------+------+     +------+------+
+
+    </pre>
+    
+    <h2>Operations on Linked Lists</h2>
+    <ul>
+        <li>Creating a new node</li>
+        <li>Adding an element at the end</li>
+        <li>Adding an element at the beginning</li>
+        <li>Traversing the list</li>
+        <li>Deleting an element</li>
+        <li>Inserting an element at a specific position</li>
+    </ul>
+    
+    <h2>Creating a New Node</h2>
+    <p>Nodes are dynamically allocated using the <code>new</code> operator:</p>
+    <pre>
+Node p = new Node(12); // Creating a node with data 12
+p.next = null; // It points to NULL as it is the last node
+    </pre>
+    
+    <h3>Adding an Element at the End of the List</h3>
+    <p>To add an element at the end, we first traverse the list to find the last node. Then, we set its <code>next</code> reference to the new node.</p>
+    <pre>
+class LinkedList {
+    Node head;
+
+    public void addAtEnd(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+}
+    </pre>
+    
+    <h3>Adding an Element at the Beginning of the List</h3>
+    <p>To add an element at the beginning, we simply set the new node's <code>next</code> pointer to the current head and update the head reference.</p>
+    <pre>
+public void addAtBeginning(int data) {
+    Node newNode = new Node(data);
+    newNode.next = head;
+    head = newNode;
+}
+    </pre>
+    
+    <h3>Traversing a Linked List</h3>
+    <p>To traverse the list, we start from the head and iterate through each node using the <code>next</code> reference until we reach the end.</p>
+    <pre>
+public void traverse() {
+    Node temp = head;
+    while (temp != null) {
+        System.out.print(temp.data + " -> ");
+        temp = temp.next;
+    }
+    System.out.println("NULL");
+}
+    </pre>
+    
+    <h3>Deleting an Element from the List</h3>
+    <p>To delete an element, we first locate the node before the target node and adjust its <code>next</code> reference to skip the target node.</p>
+    <pre>
+public void delete(int key) {
+    Node temp = head, prev = null;
+
+    if (temp != null && temp.data == key) {
+        head = temp.next;
+        return;
+    }
+
+    while (temp != null && temp.data != key) {
+        prev = temp;
+        temp = temp.next;
+    }
+
+    if (temp == null) return;
+    prev.next = temp.next;
+}
+    </pre>
+    
+    <h3>Inserting an Element After a Given Node</h3>
+    <p>To insert a node after a specific node, we update the <code>next</code> reference of the previous node to point to the new node.</p>
+    <pre>
+public void insertAfter(Node prevNode, int data) {
+    if (prevNode == null) {
+        System.out.println("The given previous node cannot be null");
+        return;
+    }
+    Node newNode = new Node(data);
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+}
+    </pre>    
+    <h2>Applications of Linked Lists</h2>
+    <ul>
+        <li>Efficient insertion and deletion (compared to arrays)</li>
+        <li>Implementation of stacks and queues</li>
+        <li>Handling large data structures (e.g., graphs, hash maps)</li>
+        <li>Efficient memory usage (nodes are dynamically allocated)</li>
+    </ul>
+ <h2>Diagram Representation of a Double-Linked List</h2> 
+
+    <pre>
+    +------+     +------+------+------+     +------+------+------+     +------+------+------+
+    |  *---+---> |NULL  |  12  |  *---+---> |      |  46  |  *---+---> |      |  25  |  NULL|
+    |      |     |      |      |      |<----+---*  |      |      |<----+---*  |      |      | <--+
+    +------+     +------+------+------+     +------+------+------+     +------+------+------+    |
+    |      |                                                                                     |
+    |  *---+-------------------------------------------------------------------------------------+
+    +------+
+ 
+    </pre>
+
+ <h2>Diagram Representation of a Circular Linked List</h2> 
+
+    <pre>             
+                      +-----------------------------------------------------+
+                      |                                                     |
+                      ↓                                                     |
+     +------+     +------+------+     +------+------+     +------+------+   |
+     |  *---+---> |  12  |  *---+---> |  46  |  *---+---> |  25  |  *---+---+
+     +------+     +------+------+     +------+------+     +------+------+
+
+    </pre>
+
+
+</div>
+    
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <h2>Topic 5 - Abstract Data Structures</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lesson1.html">Thinking Recursively</a></li>
+                <li><a href="lesson2.html">Abstract Data Structures</a></li>
+                <li><a href="lesson3.html">Linked Lists</a></li>
+                <li><a href="lesson4.html">Trees</a></li>
+                <li><a href="lesson5.html">Applications</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="logo.png" alt="IB Computer Science Explained Logo">
+        </div>
+	<div class="copyrights-container">
+            <p>&copy; 2025 IBCSE. All rights reserved.</p>
+        </div>
+
+    </div>
+    </body>
+</html>
