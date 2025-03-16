@@ -20,6 +20,7 @@
         }
         .content-container {
             max-width: 1100px;
+	    max-height: 625px;
             background: white;
 	    padding-right: 20px;
             padding-left: 20px;
@@ -35,7 +36,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-	    margin-right: 50px;
+	    margin-right: 40px;
         }
 	.sticky-header {
             position: sticky;
@@ -116,18 +117,24 @@
 	}
     </style>
     <script>
-        function adjustZoom() {
-            let baseWidth = 1510; 
-            let scale = window.innerWidth / baseWidth;
-            
-            document.body.style.transform = `scale(${scale})`;
-            document.body.style.transformOrigin = "top left";
-            document.body.style.width = `${100 / scale}%`;
-        }
+    function adjustScale() {
+        let baseWidth = 1510; 
+        let baseHeight = 625; 
 
-        window.onload = adjustZoom;
-        window.onresize = adjustZoom;
-    </script>
+        let scaleX = window.innerWidth / baseWidth;
+        let scaleY = window.innerHeight / baseHeight;
+
+        let scale = Math.min(scaleX, scaleY); 
+
+        document.body.style.transform = `scale(${scale})`;
+        document.body.style.transformOrigin = "top left";
+        document.body.style.width = `${100 / scale}%`;
+        document.body.style.height = `${100 / scale}%`;
+    }
+
+    window.onload = adjustScale;
+    window.onresize = adjustScale;
+   </script>
 </head>
 <body>
     <div class="content-container">
