@@ -7,7 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin-top: 10px;
+	    margin-right: 20px;
+	    margin-left: 20px;
+	    margin-bottom: 20px;
             padding: 20px;
             background-color: #f4f4f4;
             display: flex;
@@ -112,6 +115,20 @@
             height: fit-content;
 	}
     </style>
+    <script>
+        function adjustZoom() {
+            let baseWidth = 1510; 
+            let scale = window.innerWidth / baseWidth;
+            
+            document.body.style.transform = `scale(${scale})`;
+            document.body.style.transformOrigin = "top left";
+            document.body.style.width = `${100 / scale}%`;
+        }
+
+        window.onload = adjustZoom;
+        window.onresize = adjustZoom;
+    </script>
+	
 </head>
 <body>
     <div class="content-container">
