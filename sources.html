@@ -115,33 +115,6 @@
             top: 20px;
             height: fit-content;
 	}
-    @media (max-width: 108px) {
-            body {
-                flex-direction: column;  /* Stack elements vertically */
-                padding: 10px;  /* Add some padding for smaller screens */
-            }
-
-            .content-container, .sidebar-container {
-                max-width: 100%;  /* Ensure both containers take full width */
-                margin-right: 0;  /* Remove any right margin */
-            }
-
-            .image-container {
-                order: 1;  /* Move the image container first */
-            }
-
-            .sidebar {
-                order: 2;  /* Move the sidebar after the image */
-            }
-
-            .content-container {
-                order: 3;  /* Move the content container after the sidebar */
-            }
-
-            .copyrights-container {
-                order: 4;  /* Move the copyrights container last */
-            }
-        }
     </style>
     <script>
     function adjustScale() {
