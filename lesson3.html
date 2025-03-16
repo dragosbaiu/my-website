@@ -115,6 +115,21 @@
             height: fit-content;
 	}
     </style>
+    <script>
+        function adjustZoom() {
+            let baseWidth = 1510; // Set based on your laptop's width
+            let scale = window.innerWidth / baseWidth;
+            
+            // Use transform scale for better compatibility
+            document.body.style.transform = `scale(${scale})`;
+            document.body.style.transformOrigin = "top left";
+            document.body.style.width = `${100 / scale}%`;
+        }
+
+        window.onload = adjustZoom;
+        window.onresize = adjustZoom;
+    </script>
+
 </head>
 <body>
 <div class="content-container">
